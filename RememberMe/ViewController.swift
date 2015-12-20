@@ -9,10 +9,55 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    var name: String? {
+        
+        set {
+            
+            NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: "name")
+            
+            
+        }
+        
+        get {
 
+            return NSUserDefaults.standardUserDefaults().objectForKey("name") as? String
+
+        }
+        
+    }
+
+    @IBOutlet weak var myField: UITextField!
+    
+    
+    @IBOutlet weak var myLabel: UILabel!
+    
+    
+    @IBAction func hitButton(sender: AnyObject) {
+        
+        name = myField.text
+        
+        if let name = myField.text {
+            
+            myLabel.text = "Hi \(name)"
+            
+            
+        }
+        
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        
+        
+        if let name = name {
+            
+            myLabel.text = "Welcome Back \(name)"
+            
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
